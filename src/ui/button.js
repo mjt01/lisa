@@ -1,9 +1,8 @@
-
-define( [ "lib/jquery", "ui/abstractwidget" ], function( $, AbstractWidget ) {
+define( [ "ui/abstractwidget" ], function( AbstractWidget ) {
 	return AbstractWidget.extend({
 		defaults : {
 			label: "",                 // text of the button
-			disabled: false,           // create a disabled button
+			disabled: false           // create a disabled button
 		},
 
 		_initModelView: function() {
@@ -18,7 +17,7 @@ define( [ "lib/jquery", "ui/abstractwidget" ], function( $, AbstractWidget ) {
 			disable = disable !== false;
 			if( this.disabled !== disable ) {
 				this.disabled = disable;
-				this.toggleClass( "disabled", this.disabled );
+				this.$el.toggleClass( "disabled", this.disabled );
 				this.fire( this.disabled ? "disable" : "enable", this );
 			}
 		},
