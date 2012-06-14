@@ -1,7 +1,7 @@
 define( [ "lib/polyfills", "lib/jquery", "lib/jquery-nohtml", "ui/stack/stack", "ui/card/card", "ui/button/button" ], function( p, $, nohtml, Stack, Card, Button ) {
-		
+
 	loadCss("src/app.css");
-	
+
 	var app = new Stack({ parent: "body"	});
 
 	var transitions = [ "slide", "fade", "flip", "zoom" ];
