@@ -3,8 +3,8 @@
  * provides validation and returns data for api calls
  * @constructor
  */
-define( [ "../abstractwidget/abstractwidget" ], function( AbstractWidget ) {
-	return AbstractWidget.extend({
+define( [ "../view/view" ], function( View ) {
+	return View.extend({
 		defaults: {
 			name : "", 			// (required) - name of the field
 			require: false,	// validation requirements (false, true, regexp, function)
@@ -31,7 +31,7 @@ define( [ "../abstractwidget/abstractwidget" ], function( AbstractWidget ) {
 			}
 		},
 		validate: function() {
-			var val = this._geVal(), req = this.require;
+			var val = this._getVal(), req = this.require;
 			if(req === false) {
 				return true;
 			} else if(req === true) {
