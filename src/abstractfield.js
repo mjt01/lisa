@@ -3,13 +3,13 @@
  * provides validation and returns data for api calls
  * @constructor
  */
-define( [ "../view/view" ], function( View ) {
+define( [ "view" ], function( View ) {
 	return View.extend({
 		defaults: {
-			name : "", 			// (required) - name of the field
-			require: false,	// validation requirements (false, true, regexp, function)
+			name: "",			// (required) - name of the field
+			require: false,		// validation requirements (false, true, regexp, function)
 			value: "",			// default value
-			label: ""				// human readable label of this field
+			label: ""			// human readable label of this field
 		},
 		_initModelView: function() {
 			this._super();

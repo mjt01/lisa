@@ -1,4 +1,4 @@
-define( [ "./class" ], function( Class ) {
+define( [ "class" ], function( Class ) {
 	return Class.extend( (function() {
 		var handlersRe = /handler$/i;
 		function getObs( type ) {
@@ -40,7 +40,7 @@ define( [ "./class" ], function( Class ) {
 				this.observers = {};
 			},
 			removeObserver: function( type, fn ) {
-				var obs = getObs.call( this, type.toLowerCase() ), index = obs.reduce( function(p, t, i) { return (t.cb === fn) ? i : p }, -1 );
+				var obs = getObs.call( this, type.toLowerCase() ), index = obs.reduce( function(p, t, i) { return (t.cb === fn) ? i : p; }, -1 );
 				if( index !== -1 ) {
 					obs.splice( index, 1 );
 				}

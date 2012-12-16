@@ -1,5 +1,5 @@
-define( [ "ui/Observable" ], function( Observable ) {
- 	return Observable.extend({
+define( [ "Observable" ], function( Observable ) {
+	return Observable.extend({
 		defaults: {
 			key: null,     // either the name of a field, or a function which generates the unique key
 			items: null,   // array of all items
@@ -25,7 +25,7 @@ define( [ "ui/Observable" ], function( Observable ) {
 			return this.slice();
 		},
 		eq: function( i ) {
-			return this._items[ i || 0 ]
+			return this._items[ i || 0 ];
 		},
 		filter: function( iterator ) {
 			return this._items.filter( iterator );
@@ -48,9 +48,9 @@ define( [ "ui/Observable" ], function( Observable ) {
 			var index = this._keys[ key ];
 			this._items.splice( index, 1 );
 			delete this._keys[ key ];
-			for( var key in this._keys ) {
-				if( this._keys[key] > index ) {
-					this._keys[key] -= 1;
+			for( var keyName in this._keys ) {
+				if( this._keys[keyName] > index ) {
+					this._keys[keyName] -= 1;
 				}
 			}
 			return this;
@@ -67,5 +67,5 @@ define( [ "ui/Observable" ], function( Observable ) {
 			var keys = {}, key = this._keyFn;
 			this.forEach( function( item, index ) {	keys[ key( item ) ] = index; });
 			return keys;
-	  }	});
+	}});
 });

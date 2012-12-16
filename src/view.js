@@ -1,4 +1,4 @@
-define( [ "ui/abstractwidget/abstractwidget" ], function( AbstractWidget ) {
+define( [ "abstractwidget" ], function( AbstractWidget ) {
 
     return AbstractWidget.extend({
             defaults: {

@@ -1,4 +1,4 @@
-define( [ "../fields/abstractfield" ], function( AbstractField ){
+define( [ "abstractfield" ], function( AbstractField ){
 	return AbstractField.extend({
 		init: function() {
 			this._super();

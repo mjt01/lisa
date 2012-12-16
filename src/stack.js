@@ -1,5 +1,5 @@
 // simple view for containing pages
-define( [ "lib/jquery", "../abstractwidget/abstractwidget", "link!./stack.css" ], function( $, AbstractWidget ) {
+define( [ "lib/jquery", "abstractwidget", "link!./css/stack.css" ], function( $, AbstractWidget ) {
 
 	return AbstractWidget.extend({
 		defaults : {
@@ -37,4 +37,5 @@ define( [ "lib/jquery", "../abstractwidget/abstractwidget", "link!./stack.css" ]
 			{ tag: 'DIV', id: this.id(), cls: "uiStack", children: this.config.children }
 		); }
 	});
+
 });

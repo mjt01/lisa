@@ -2,15 +2,15 @@ define( function() {
 	if( !Function.prototype.bind ) {
 		Function.prototype.bind = function bind( obj ) {
 		var slice = [].slice,
-			args = slice.call(arguments, 1), 
-			self = this, 
-			nop = function () {}, 
+			args = slice.call(arguments, 1),
+			self = this,
+			Nop = function () {},
 			bound = function () {
-				return self.apply( this instanceof nop ? this : ( obj || {} ), args.concat( slice.call(arguments) ) );
+				return self.apply( this instanceof Nop ? this : ( obj || {} ), args.concat( slice.call(arguments) ) );
 			};
 
-			nop.prototype = self.prototype;
-			bound.prototype = new nop();
+			Nop.prototype = self.prototype;
+			bound.prototype = new Nop();
 			return bound;
 		};
 	}

@@ -1,0 +1,36 @@
+{
+  "name": "lisa",
+  "description": "The best project ever.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mjt01/lisa",
+  "author": {
+    "name": "mjt01",
+    "email": "michael.taranto@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mjt01/lisa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mjt01/lisa/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mjt01/lisa/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "src/",
+  "engines": {
+    "node": "0.8"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17",
+    "jshint": "~0.9.1",
+    "grunt-jasmine-runner": "~0.6.0"
+  },
+  "keywords": []
+}

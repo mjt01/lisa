@@ -4,8 +4,8 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 	// ie 6, 7 and 8 have trouble with the type and names of dynamically created inputs
 	$.support.useHTMLForInputType = false;
 	$(function() {
+		var field = doc.createElement( "INPUT" );
 		try {
-			var field = doc.createElement( "INPUT" );
 			doc.body.appendChild( field );
 			field.setAttribute( "type", "checkbox" );
 		} catch(e) {
@@ -18,6 +18,10 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 	var create = $.create = (function() {
 
 		function addAttrs( el, obj, context ) {
+			var lowerCaseEventName = function(eventName) {
+				return eventName.replace(/^[A-Z]/, function(str) { return str.toLowerCase(); });
+			};
+
 			for( var attr in obj ){
 				switch( attr ) {
 				case 'tag' :
@@ -43,7 +47,7 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 					break;
 				default :
 					if( attr.indexOf("on") === 0 && $.isFunction(obj[attr]) ) {
-						$.event.add( el, attr.substr(2).replace(/^[A-Z]/, function(a) { return a.toLowerCase(); }), obj[attr] );
+						$.event.add( el, lowerCaseEventName(attr.substr(2)), obj[attr] );
 					} else {
 						$.attr( el, attr, obj[attr] );
 					}
@@ -63,7 +67,7 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 			}
 			var el;
 			if(typeof(obj) === 'string') {
-			  el = context.createTextNode(obj);
+				el = context.createTextNode(obj);
 			} else if(!obj) {
 				return undefined;
 			} else if(obj.nodeType === 1) {
@@ -82,7 +86,7 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 			}
 			if(parent){ parent.appendChild(el); }
 			return el;
-		};
+		}
 
 		return function( elementDef, parentNode ) {
 			return createNode( elementDef, parentNode, (parentNode && parentNode.ownerDocument) || doc );
@@ -97,8 +101,9 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 
 	$.clean = function( elems, context, fragment, scripts ) {
 		for(var i = 0; i < elems.length; i++) {
-			if( elems[i].tag )
+			if( elems[i].tag ) {
 				elems[i] = create( elems[i], null, context );
+			}
 		}
 		return clean( elems, context, fragment, scripts );
 	};
