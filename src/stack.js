@@ -26,7 +26,7 @@ define( [ "jquery", "./abstractwidget" ], function( $, AbstractWidget ) {
 			return out;
 		},
 		_navigate: function( cardIn, cardOut, options, reverse ) {
-			options = $.extend( { method: "fade" }, options, { zIndex: ++this._animCounter } );
+			options = $.extend( { method: "fade", reverse: false }, options, { zIndex: ++this._animCounter } );
 			options.reverse = reverse || options.reverse;
 			cardOut && cardOut.hide( options );
 			cardIn && cardIn.show( options );
