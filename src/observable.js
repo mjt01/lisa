@@ -1,4 +1,4 @@
-define( [ "class" ], function( Class ) {
+define( [ "./class" ], function( Class ) {
 	return Class.extend( (function() {
 		var handlersRe = /handler$/i;
 		function getObs( type ) {
@@ -25,8 +25,8 @@ define( [ "class" ], function( Class ) {
 			},
 			fire: function( type ) { // fire: synonymous with fireEvent, observe, publish
 				var params = Array.prototype.slice.call( arguments, 1 );
-				var callObserver = function(type) {
-					getObs.call(this, type).slice().forEach(function(ob) {
+				var callObserver = function(eventName) {
+					getObs.call(this, eventName.toLowerCase()).slice().forEach(function(ob) {
 						ob.cb.apply(ob.cx, ob.args.concat(params));
 					});
 				}.bind(this);

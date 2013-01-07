@@ -1,4 +1,4 @@
-define( [ "lib/jquery", "observable" ], function( $, Observable ){
+define( [ "jquery", "./observable", "nohtml" ], function( $, Observable, nohtml ){
 	return Observable.extend({
 		defaults : {
 			id: null,     // the id of the widget
@@ -8,7 +8,7 @@ define( [ "lib/jquery", "observable" ], function( $, Observable ){
 		init: function() {
 			this._super();
 			this._initModelView();
-			this.$el = $( this._mainTemplate() );
+			this.$el = $( nohtml( this._mainTemplate() ) );
 			this._initHandlers();
 			this.attach( this.config.parent );
 			this._initSetup();
@@ -29,6 +29,7 @@ define( [ "lib/jquery", "observable" ], function( $, Observable ){
 			this.$el.remove();
 			return this;
 		},
+		_mainTemplate: $.noop,
 		_destroyHandler: function() {
 			this.fire("destroy", this);
 			this.removeAllObservers();

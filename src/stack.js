@@ -1,5 +1,5 @@
 // simple view for containing pages
-define( [ "lib/jquery", "abstractwidget", "link!./css/stack.css" ], function( $, AbstractWidget ) {
+define( [ "jquery", "./abstractwidget" ], function( $, AbstractWidget ) {
 
 	return AbstractWidget.extend({
 		defaults : {
@@ -23,6 +23,7 @@ define( [ "lib/jquery", "abstractwidget", "link!./css/stack.css" ], function( $,
 		pop: function() {
 			var out = this._stack.pop();
 			this._navigate( this._topCard(), out.card, out.options, true );
+			return out;
 		},
 		_navigate: function( cardIn, cardOut, options, reverse ) {
 			options = $.extend( { method: "fade" }, options, { zIndex: ++this._animCounter } );

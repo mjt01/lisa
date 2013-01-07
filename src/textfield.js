@@ -1,4 +1,4 @@
-define( [ "abstractfield" ], function( AbstractField ){
+define( [ "./abstractfield" ], function( AbstractField ){
 	return AbstractField.extend({
 		init: function() {
 			this._super();
@@ -18,7 +18,7 @@ define( [ "abstractfield" ], function( AbstractField ){
 			}
 		},
 		_fieldTemplate: function() { return (
-			{ tag: "INPUT", id: this.id("field"), type: "text" }
+			{ tag: "INPUT", id: this.id("field"), type: "text", placeholder: this.config.placeholder }
 		); }
 	});
 });

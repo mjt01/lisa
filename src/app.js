@@ -1,5 +1,4 @@
-define( [ "stack", "card", "button", "abstractwidget", "textfield", "model",
-          "link!./css/app.css" ], function( Stack, Card, Button, AbstractWidget, TextField, Model ) {
+define( [ "./stack", "./card", "./button", "./abstractwidget", "./textfield", "./model" ], function( Stack, Card, Button, AbstractWidget, TextField, Model ) {
     
     return AbstractWidget.extend({
         init: function() {

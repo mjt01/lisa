@@ -1,4 +1,4 @@
-define( [ "abstractwidget" ], function( AbstractWidget ) {
+define( [ "./abstractwidget" ], function( AbstractWidget ) {
 	return AbstractWidget.extend({
 		defaults : {
 			label: "",                // text of the button

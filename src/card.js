@@ -1,7 +1,7 @@
 // simple view for containing other controls
-define( [ "lib/jquery", "abstractwidget", "link!./css/card.css" ], function( $, AbstractWidget ) {
+define( [ "jquery", "./view" ], function( $, View ) {
 
-	return AbstractWidget.extend({
+	return View.extend({
 		defaults : {
 			title: null,               // name of the card (optional)
 			children: [],              // contents of the card
@@ -13,7 +13,7 @@ define( [ "lib/jquery", "abstractwidget", "link!./css/card.css" ], function( $, 
 			this._current = false;
 		},
 		_initHandlers: function() {
-			this.$el.bind("webkitAnimationEnd", this._animEndHandler );
+			this.$el.bind("webkitAnimationEnd animationend", this._animEndHandler );
 		},
 		_initSetup: function() {
 			this._super();
