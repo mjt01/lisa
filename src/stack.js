@@ -27,16 +27,16 @@ define( [ "jquery", "./abstractwidget" ], function( $, AbstractWidget ) {
 		},
 		_navigate: function( cardIn, cardOut, options, reverse ) {
 			options = $.extend( { method: "fade" }, options, { zIndex: ++this._animCounter } );
-			options.reverse = !reverse !== !options.reverse; // XOR
+			options.reverse = reverse || options.reverse;
 			cardOut && cardOut.hide( options );
 			cardIn && cardIn.show( options );
 		},
 		_topCard: function() {
 			return this._stack.length ? this._stack[ this._stack.length - 1 ].card : null;
 		},
-		_mainTemplate: function() { return (
-			{ tag: 'DIV', id: this.id(), cls: "uiStack", children: this.config.children }
-		); }
+		_mainTemplate: function() {
+			return { tag: 'DIV', id: this.id(), cls: "uiStack", children: this.config.children };
+		}
 	});
 
 });

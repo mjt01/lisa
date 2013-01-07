@@ -1,31 +1,29 @@
 {
   "name": "lisa",
-  "description": "The best project ever.",
+  "description": "ACX UI Framework",
   "version": "0.1.0",
-  "homepage": "https://github.com/mjt01/lisa",
+  "homepage": "https://github.com/aconex/lisa",
   "author": {
-    "name": "mjt01",
-    "email": "michael.taranto@gmail.com"
+    "name": "Aconex",
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mjt01/lisa.git"
+    "url": "https://github.com/aconex/lisa.git"
   },
   "bugs": {
-    "url": "https://github.com/mjt01/lisa/issues"
+    "url": "https://github.com/aconex/lisa/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/mjt01/lisa/blob/master/LICENSE-MIT"
+      "url": "https://github.com/aconex/lisa/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "src/",
   "engines": {
     "node": "0.8"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt jasmine"
   },
   "devDependencies": {
     "grunt": "~0.3.17",
