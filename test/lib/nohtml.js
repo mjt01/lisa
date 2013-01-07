@@ -1,27 +1,21 @@
-define( [ "lib/jquery" ], function( $, undefined ) {
-	var doc = this.document;
-	
+define(['jquery'], function($) {
 	// ie 6, 7 and 8 have trouble with the type and names of dynamically created inputs
 	$.support.useHTMLForInputType = false;
 	$(function() {
-		var field = doc.createElement( "INPUT" );
 		try {
-			doc.body.appendChild( field );
+			var field = document.createElement( "INPUT" );
+			document.body.appendChild( field );
 			field.setAttribute( "type", "checkbox" );
 		} catch(e) {
 			$.support.useHTMLForInputType = true;
 		} finally {
-			field.parentNode && doc.body.removeChild( field );
+			field.parentNode && document.body.removeChild( field );
 		}
 	});
 
 	var create = $.create = (function() {
 
 		function addAttrs( el, obj, context ) {
-			var lowerCaseEventName = function(eventName) {
-				return eventName.replace(/^[A-Z]/, function(str) { return str.toLowerCase(); });
-			};
-
 			for( var attr in obj ){
 				switch( attr ) {
 				case 'tag' :
@@ -47,7 +41,7 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 					break;
 				default :
 					if( attr.indexOf("on") === 0 && $.isFunction(obj[attr]) ) {
-						$.event.add( el, lowerCaseEventName(attr.substr(2)), obj[attr] );
+						$.event.add( el, attr.substr(2).replace(/^[A-Z]/, function(a) { return a.toLowerCase(); }), obj[attr] );
 					} else {
 						$.attr( el, attr, obj[attr] );
 					}
@@ -56,7 +50,7 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 		}
 
 		function createNode(obj, parent, context) {
-			if( obj && $.type( obj ) === "array" || obj instanceof $ ) {
+			if(obj && ($.isArray(obj) || obj instanceof $)) {
 				for(var ret = [], i = 0; i < obj.length; i++) {
 					var newNode = createNode(obj[i], parent, context);
 					if(newNode) {
@@ -72,38 +66,37 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 				return undefined;
 			} else if(obj.nodeType === 1) {
 				el = obj;
-			} else if(obj.$el) {
-				el = obj.$el[0];
+			} else if(obj.jquery) {
+				el = obj[0];
 			} else {
 				if($.support.useHTMLForInputType && obj.tag && obj.tag.match(/input|button/i)) {
 					el = context.createElement("<"+obj.tag + ( obj.type ? " type='"+obj.type+"'" : "" ) + ( obj.name ? " name='"+obj.name+"'" : "" ) + ( obj.checked ? " checked" : "" ) + ">");
 					delete obj.type;
 					delete obj.name;
 				} else {
-					el = context.createElement( obj.tag || 'DIV' );
+					el = context.createElement(obj.tag||'DIV');
 				}
 				addAttrs(el, obj, context);
 			}
 			if(parent){ parent.appendChild(el); }
 			return el;
-		}
-
-		return function( elementDef, parentNode ) {
-			return createNode( elementDef, parentNode, (parentNode && parentNode.ownerDocument) || doc );
 		};
 
+		return function(elementDef, parentNode) {
+			return createNode(elementDef, parentNode, (parentNode && parentNode.ownerDocument) || document);
+		};
+		
 	})();
+	
 
-
-	// inject create into jquery internals so templates are treated as first class constructors (overrides non-public methods)
+	// inject create into jquery internals so object definitions are treated as first class constructors (overrides non-public methods)
 	var clean = $.clean,
 		init = $.fn.init;
 
 	$.clean = function( elems, context, fragment, scripts ) {
 		for(var i = 0; i < elems.length; i++) {
-			if( elems[i].tag ) {
+			if( elems[i].tag )
 				elems[i] = create( elems[i], null, context );
-			}
 		}
 		return clean( elems, context, fragment, scripts );
 	};
@@ -116,7 +109,7 @@ define( [ "lib/jquery" ], function( $, undefined ) {
 	};
 
 	$.fn.init.prototype = $.fn;
-	
-	return create;
-});
 
+	return create;
+
+});

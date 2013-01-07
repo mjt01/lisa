@@ -26,11 +26,13 @@ module.exports = function(grunt) {
       files: ['test/**/*.js']
     },
     jasmine: {
-      src : [
-        'src/lib/curl.js',
-        'src/*.js'
+      amd: true,
+      helpers: [
+        'test/lib/es5-shim.js',
+        'test/lib/require.js',
+        'test/helpers/requireConfig.js'
       ],
-      specs : 'test/*Test.js'
+      specs : 'test/specs/*Spec.js'
     },
     lint: {
       files: [ 'grunt.js', 'src/*.js' ]
